@@ -1,0 +1,37 @@
+#SurfaceIntegrator "diffuseprt" "integer lmax" [10] "integer nsamples" [64]
+SurfaceIntegrator "ambientocclusion" 
+
+Scale -1 1 1
+LookAt 0.1 1.5 0    0 0 0   0 1 0
+Camera "perspective"
+#Camera "environment"
+
+Film "image" "integer xresolution" [512] "integer yresolution" [512]
+
+
+Sampler "lowdiscrepancy" "integer pixelsamples" [1]
+PixelFilter "box"
+Accelerator "kdtree"
+
+WorldBegin
+
+AttributeBegin
+LightSource "infinite" "string mapname" ["textures/grace_latlong.exr"]
+"color L" [10 10 10]
+	"integer nsamples" [128]
+AttributeEnd
+
+#Material "plastic" "color Kd" [.05 .05 .05] "color Ks" [.9 .9 .9] "float roughness" [.03]
+Material "matte" "color Kd" [ .2 .2 .2 ]
+
+#Shape "trianglemesh"  "integer indices" [0 2 1 ] "point P" [1.332760 -0.370922 2.454690 1.350740 -0.375926 2.400000 1.400000 0.000000 2.400000 ] "normal N" [0.953562 -0.257047 0.156989 0.871509 -0.234929 0.430442 0.902861 0.000000 0.429934 ] 
+Shape "trianglemesh"  "integer indices" [0 2 1 ] "point P" [-1.0 0.0 -1.0 1.0 0.0 1.0 -1.0 0.0 1.0 ] "normal N" [0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 ] 
+Shape "trianglemesh"  "integer indices" [0 2 1 ] "point P" [1.0 0.0 -1.0 1.0 0.0 1.0 -1.0 0.0 -1.0 ] "normal N" [0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 ] 
+
+Material "matte" "color Kd" [ 1 1 1 ]
+Shape "trianglemesh"  "integer indices" [0 2 1 ] "point P" [-0.5 0.001 -0.5 0.5 0.001 0.5 -0.5 0.001 0.5 ] "normal N" [0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 ] 
+Shape "trianglemesh"  "integer indices" [0 2 1 ] "point P" [0.5 0.001 -0.5 0.5 0.001 0.5 -0.5 0.001 -0.5 ] "normal N" [0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 ] 
+
+
+WorldEnd
+# ignored frame end
